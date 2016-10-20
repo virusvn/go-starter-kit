@@ -17,9 +17,10 @@ var confString = `
 debug: false
 commit: 0
 port: 5000
-title: Go Starter Kit
+title: Go Starter Kit Test
 api:
   prefix: /api
 duktape:
   path: static/build/bundle.js
+author: Nhan Nguyen 1	
 `

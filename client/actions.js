@@ -3,6 +3,7 @@
  */
 
 export const SET_CONFIG = 'SET_CONFIG';
+export const SET_VERTEX = 'SET_VERTEX';
 
 /**
  * action creators
@@ -10,4 +11,7 @@ export const SET_CONFIG = 'SET_CONFIG';
 
 export function setConfig(config) {
   return { type: SET_CONFIG, config };
+}
+export function setVertex(config) {
+  return {type: SET_VERTEX, config}
 }

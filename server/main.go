@@ -1,9 +1,8 @@
 package main
 
 import (
-	"os"
-
 	"github.com/codegangsta/cli"
+	"os"
 )
 
 func main() {
@@ -25,6 +24,7 @@ func Run(args []string) {
 			Action: RunServer,
 		},
 	}
+
 	app.Run(args)
 }
 
