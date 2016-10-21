@@ -9,9 +9,9 @@ import { setConfig, setVertex } from '../../actions';
 class UsageV2 extends Component {
   /*eslint-enable */
   componentWillMount() {
-   fetch('/api/v1/conf').then((r) => {
+   fetch('/api/v1/articles').then((r) => {
       return r.json();
-    }).then((conf) => {
+   }).then((conf) => {
       store.dispatch(setVertex(conf));
       console.warn('Faked connection latency! Please, take a look ---> `server/api.go:22`');
     }); 
