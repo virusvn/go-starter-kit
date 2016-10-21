@@ -1,10 +1,9 @@
 package main
 
 import (
+	"github.com/virusvn/go-starter-kit/server/models"
 	"gopkg.in/labstack/echo.v1"
-	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"time"
 )
 
 // API is a defined as struct bundle
@@ -43,54 +42,13 @@ func (api *API) VertexHandler(c *echo.Context) error {
 
 // ArticleHandler An example return an article
 func (api *API) ArticleHandler(c *echo.Context) error {
-
-	// database
-	session, err := mgo.Dial("127.0.0.1")
-	if err != nil {
-		panic(err)
-	}
-
-	defer session.Close()
-	collection := session.DB("blog").C("urls")
 	// Check title with current site is crawled or not
-	var article Article
-	err = collection.Find(bson.M{"title": "Hệ thống điệp viên Huginn: Thế giới trong tầm tay - Fullstack Station", "site": "www.businesscard.vn"}).One(&article)
+	// var base models.Base
+	var article models.Article
+	result, err := article.Find(article, bson.M{"site": "www.businesscard.vn"})
 	if err != nil {
 		panic(err)
 	}
-	c.JSON(200, article)
+	c.JSON(200, result)
 	return nil
-}
-
-// Article struct
-type Article struct {
-	Content string        `bson:"content,omitempty"`
-	URL     string        `bson:"url,omitempty"`
-	ID      bson.ObjectId `bson:"_id,omitempty"`
-	Slug    string        `bson:"slug,omitempty"`
-	Title   string        `bson:"title,omitempty"`
-	Images  []struct {
-		URL  string `bson:"url,omitempty"`
-		Size string `bson:"size,omitempty"`
-	} `bson:"images,omitempty"`
-	Technology  []string `bson:"technology,omitempty"`
-	Seri        string   `bson:"seri,omitempty"`
-	Language    []string `bson:"language,omitempty"`
-	Website     string   `bson:"website,omitempty"`
-	Domain      string   `bson:"domain,omitempty"`
-	Topic       []string `bson:"topic,omitempty"`
-	Locale      string   `bson:"locale,omitempty"`
-	Framework   []string `bson:"framework,omitempty"`
-	Description string   `bson:"description,omitempty"`
-	Level       []int64  `bson:"level,omitempty"`
-	Site        string   `bson:"site,omitempty"`
-	Comments    []struct {
-		Updated  time.Time `bson:"updated,omitempty"`
-		Comment  string    `bson:"comment,omitempty"`
-		Username string    `bson:"username,omitempty"`
-		Created  time.Time `bson:"created,omitempty"`
-	} `bson:"comments,omitempty"`
-	Point   int64     `bson:"point,omitempty"`
-	Updated time.Time `bson:"updated,omitempty"`
-	Created time.Time `bson:"created,omitempty"`
 }
