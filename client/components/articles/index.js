@@ -48,7 +48,7 @@ class Usage extends Component {
   /*eslint-enable */
 
   render() {
-    return <div className={usage}>
+    return <div className={usage} id="fuck">
       <Helmet title='Usage' />
       <h2 className={example}>Articles:</h2>
       <div className={p}>
